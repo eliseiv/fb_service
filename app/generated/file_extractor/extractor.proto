@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package file_extractor;
+
+service FileExtractorService {
+    rpc GetProxies (GetProxiesRequest) returns (GetProxiesResponse);
+}
+
+// Get Proxies
+message GetProxiesRequest {}
+
+message GetProxiesResponse {
+    repeated string proxies = 1;
+}

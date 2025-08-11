@@ -1,0 +1,67 @@
+syntax = "proto3";
+
+package similarity;
+
+service SimilarityService {
+    rpc CountRatioS (CountRatioSRequest) returns (CountRatioSResponse);
+    rpc CountRatio (CountRatioRequest) returns (CountRatioResponse);
+    rpc ExtractWordsFromText (ExtractWordsFromTextRequest) returns (ExtractWordsFromTextResponse);
+    rpc SimpleRatioWithLog (SimpleRatioWithLogRequest) returns (SimpleRatioWithLogResponse);
+    rpc GetNltkSynonyms (GetNltkSynonymsRequest) returns (GetNltkSynonymsResponse);
+}
+
+// -------------------------------
+message StringListMap {
+    string key = 1;
+    repeated string value = 2;
+}
+message StringList {
+    repeated string values = 1;
+}
+// -------------------------------
+message CountRatioSRequest {
+    string substring = 1;
+    string text = 2;
+}
+message CountRatioSResponse {
+    float ratio = 1;
+}
+// -------------------------------
+message CountRatioRequest {
+    string substring = 1;
+    string text = 2;
+    int64 root = 3;
+}
+message CountRatioResponse {
+    float ratio = 1;
+}
+// -------------------------------
+message ExtractWordsFromTextRequest {
+    string text = 1;
+}
+message ExtractWordsFromTextResponse {
+    repeated string result = 1;
+}
+// -------------------------------
+message SimpleRatioWithLogResponseMap {
+    float ratio = 1;
+    string ratio_log = 2;
+    StringList intersections = 3;
+}
+message SimpleRatioWithLogRequest {
+    string substring = 1;
+    string text = 2;
+    string url = 3;
+    map<string, StringList> synonyms = 4;
+}
+message SimpleRatioWithLogResponse {
+    SimpleRatioWithLogResponseMap result = 1;
+}
+// -------------------------------
+message GetNltkSynonymsRequest {
+    string remote_syns = 1;
+}
+message GetNltkSynonymsResponse {
+    repeated string result = 1;
+}
+// -------------------------------

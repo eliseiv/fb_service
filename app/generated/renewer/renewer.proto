@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package renewer;
+
+service RenewService {
+    rpc Renew (RenewRequest) returns (RenewResponse);
+}
+
+message RenewRequest {
+    string name = 1;
+}
+message RenewResponse {
+    map<string, string> content = 1;
+}
